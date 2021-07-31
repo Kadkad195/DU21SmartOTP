@@ -47,7 +47,7 @@ allprojects {
 Add the dependency
 ```
 dependencies {
-        implementation 'com.github.Kadkad195:DU21SmartOTP:0.1.1'
+        implementation 'com.github.Kadkad195:DU21SmartOTP:1.1.1'
 }
 ```
 ## MAVEN
@@ -65,7 +65,7 @@ Add the dependency
 <dependency>
     <groupId>com.github.Kadkad195</groupId>
     <artifactId>DU21SmartOTP</artifactId>
-    <version>Tag</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
