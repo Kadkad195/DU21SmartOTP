@@ -24,20 +24,18 @@ class MainActivity : AppCompatActivity() {
         * Step 2:
         * register listenser and expired handler
         * */
-        smartOTP.listenerOTP = object : ((String, Long) -> Unit) {
-            override fun invoke(otpValue: String, secondLeft: Long) {
-                tvTimeLeft.text = "$secondLeft seconds"
-                tvOTP.text = otpValue
-            }
+
+        smartOTP.listenerOTP = { otpValue, secondLeft ->
+            tvTimeLeft.text = "$secondLeft seconds"
+            tvOTP.text = otpValue
         }
 
-        smartOTP.listenerOTPExpired = object : (() -> Unit) {
-            override fun invoke() {
-                btnGenOtp.visibility = View.VISIBLE
-                tvTimeLeft.visibility = View.GONE
-                tvOTP.visibility = View.GONE
-            }
+        smartOTP.listenerOTPExpired = {
+            btnGenOtp.visibility = View.VISIBLE
+            tvTimeLeft.visibility = View.GONE
+            tvOTP.visibility = View.GONE
         }
+
 
         /*
         * Step 3:
