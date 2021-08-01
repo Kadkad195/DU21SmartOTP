@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.function.Consumer
 
 /*
 * @params
@@ -43,6 +44,20 @@ class DU21SmartOTP(
         mGenerateTime = 0
         mInput = input
         getTOTP()
+    }
+
+    fun createTOTPFromShareKey(shareKey: String, success: (otp: String) -> Unit) {
+        Observable.create<Long> {
+            it.onNext(TimeUtil.getNetworkTime())
+        }.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { ntpTime ->
+                val counter = ntpTime / period
+                val totp = TOTP()
+                val otp = totp.generateTOTP256(shareKey, "$counter", "$digit")
+                success.invoke(otp)
+            }
+            .subscribe()
     }
 
     private fun getTOTP() {
