@@ -34,6 +34,12 @@ smartOTP.createTOTP("YOUR_SECRET")
 ```
 smartOTP.clear()
 ```
+
+## Create TOTP From ShareKey:
+```
+smartOTP.createTOTPFromShareKey(shareKey)
+```
+
 ## GRADLE
 Add it in your root build.gradle at the end of repositories:
 ```
